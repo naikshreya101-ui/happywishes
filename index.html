@@ -1,0 +1,2839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Boyfriend's Day, Anshh! 💖</title>
+  
+  <!-- Google Fonts: Cute, romantic, rounded, and handwritten typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Dancing+Script:wght@600;700&family=Outfit:wght@400;500;600&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    :root {
+      --pink-soft: #fff0f5;
+      --pink-blush: #ffe4ec;
+      --pink-primary: #ff5e7e;
+      --pink-deep: #e03158;
+      --pink-accent: #ff85a2;
+      --cream-card: #ffffff;
+      --text-main: #3a2e39;
+      --text-muted: #7c6776;
+      --shadow-cute: 0 14px 34px rgba(255, 94, 126, 0.15);
+      --border-pink: #ffd0dc;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: var(--pink-soft);
+      color: var(--text-main);
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(#ffccd5 1px, transparent 1px),
+        radial-gradient(#ffe5ec 1px, #fff0f5 1px);
+      background-size: 28px 28px;
+      background-position: 0 0, 14px 14px;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Floating cute doodles/hearts in background */
+    .floating-decorations {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .heart-float {
+      position: absolute;
+      opacity: 0.35;
+      animation: floatUp 13s infinite linear;
+      font-size: 26px;
+      filter: drop-shadow(0 2px 5px rgba(255, 94, 126, 0.2));
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(105vh) rotate(0deg) scale(0.9); opacity: 0; }
+      20% { opacity: 0.55; }
+      80% { opacity: 0.55; }
+      100% { transform: translateY(-10vh) rotate(360deg) scale(1.1); opacity: 0; }
+    }
+
+    .container {
+      max-width: 1020px;
+      margin: 0 auto;
+      padding: 40px 20px 80px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ----------------------------------------------------
+       PAGE 0: "DO YOU LOVE ME?" INTERACTIVE GATE
+       ---------------------------------------------------- */
+    #gate-view {
+      min-height: 82vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 15px;
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    .gate-card {
+      background: #ffffff;
+      border: 3px dashed var(--pink-accent);
+      border-radius: 32px;
+      padding: 50px 30px;
+      max-width: 560px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(255, 94, 126, 0.22);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gate-sticker {
+      font-size: 55px;
+      margin-bottom: 10px;
+      animation: bounce 2s infinite ease-in-out;
+    }
+
+    .gate-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 54px;
+      font-weight: 700;
+      color: var(--pink-deep);
+      margin-bottom: 12px;
+      line-height: 1.15;
+      text-shadow: 2px 2px 0px rgba(255, 182, 193, 0.4);
+    }
+
+    .gate-subtitle {
+      font-size: 17px;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+
+    .gate-btn-arena {
+      position: relative;
+      height: 220px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 10px 0 15px 0;
+      border-radius: 24px;
+      background: #fff8fa;
+      border: 2px dashed #ffd5df;
+      overflow: hidden;
+    }
+
+    .btn-yes {
+      background: linear-gradient(135deg, #ff416c, #ff4b2b);
+      color: white;
+      border: none;
+      padding: 16px 36px;
+      font-size: 18px;
+      font-weight: 700;
+      border-radius: 35px;
+      cursor: pointer;
+      font-family: 'Quicksand', sans-serif;
+      box-shadow: 0 10px 25px rgba(255, 65, 108, 0.45);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      z-index: 5;
+      position: relative;
+    }
+
+    .btn-yes:hover {
+      transform: scale(1.08);
+      box-shadow: 0 14px 35px rgba(255, 65, 108, 0.6);
+    }
+
+    .btn-no {
+      background: #ffffff;
+      color: #6c757d;
+      border: 2px solid #ffccd5;
+      padding: 12px 24px;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 30px;
+      cursor: pointer;
+      font-family: 'Quicksand', sans-serif;
+      position: absolute;
+      left: 30px;
+      top: 30px;
+      z-index: 10;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .gate-warning {
+      font-family: 'Caveat', cursive;
+      font-size: 21px;
+      color: var(--pink-accent);
+      font-weight: 700;
+      margin-top: 10px;
+    }
+
+    /* ----------------------------------------------------
+       VIEW 1: CUTE BOYFRIEND'S DAY HOME PAGE
+       ---------------------------------------------------- */
+    #selection-view {
+      display: none;
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 30px 10px 45px 10px;
+      position: relative;
+    }
+
+    /* Cute Ribbon Badge */
+    .cute-ribbon {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      background: #ffe3ea;
+      color: var(--pink-deep);
+      padding: 8px 24px;
+      border-radius: 30px;
+      border: 1.5px dashed var(--pink-accent);
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(255, 94, 126, 0.12);
+    }
+
+    /* Cute Pink Heading */
+    .hero h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 56px;
+      font-weight: 700;
+      color: var(--pink-deep);
+      margin-bottom: 12px;
+      line-height: 1.2;
+      text-shadow: 2px 3px 0px rgba(255, 182, 193, 0.4);
+    }
+
+    .hero h1 .name-highlight {
+      color: #ff3366;
+      background: linear-gradient(120deg, #ff416c, #ff4b2b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+      position: relative;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 580px;
+      margin: 0 auto 30px auto;
+      font-weight: 500;
+    }
+
+    /* Cute Interactive Pink Button */
+    .btn-pink-hero {
+      background: linear-gradient(135deg, #ff5e7e, #ff85a2);
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(255, 94, 126, 0.35);
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    .btn-pink-hero:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 12px 30px rgba(255, 94, 126, 0.45);
+    }
+
+    .tap-hint {
+      font-family: 'Caveat', cursive;
+      font-size: 22px;
+      color: var(--pink-deep);
+      margin-bottom: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      animation: bounceHint 1.6s infinite ease-in-out;
+    }
+
+    @keyframes bounceHint {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .pulse-btn {
+      animation: gentlePulse 2.2s infinite;
+    }
+
+    @keyframes gentlePulse {
+      0%, 100% { box-shadow: 0 8px 25px rgba(255, 94, 126, 0.35); }
+      50% { box-shadow: 0 14px 34px rgba(255, 94, 126, 0.65); transform: scale(1.02); }
+    }
+
+    /* 3 Bouquets Grid */
+    .bouquet-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 35px;
+    }
+
+    .bouquet-card {
+      background: var(--cream-card);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow-cute);
+      border: 2px solid var(--border-pink);
+      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .bouquet-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 22px 45px rgba(255, 94, 126, 0.25);
+      border-color: var(--pink-accent);
+    }
+
+    .bouquet-img-wrapper {
+      position: relative;
+      height: 260px;
+      overflow: hidden;
+      background: #ffe8ee;
+    }
+
+    .bouquet-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .bouquet-card:hover .bouquet-img-wrapper img {
+      transform: scale(1.08);
+    }
+
+    /* Cute Stamp / Badge on Image */
+    .cute-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(4px);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--pink-deep);
+      box-shadow: 0 4px 12px rgba(255, 94, 126, 0.15);
+      border: 1px solid var(--border-pink);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .bouquet-info {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      text-align: center;
+      background: linear-gradient(180deg, #ffffff 0%, #fffcfd 100%);
+    }
+
+    .bouquet-info h3 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 32px;
+      color: var(--pink-deep);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .bouquet-meaning {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--pink-accent);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .bouquet-info p {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 22px;
+      flex-grow: 1;
+    }
+
+    .btn-choose {
+      background: linear-gradient(135deg, #ff6b8b, #ff8da5);
+      color: white;
+      border: none;
+      padding: 12px 22px;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: 'Quicksand', sans-serif;
+      box-shadow: 0 5px 15px rgba(255, 107, 139, 0.28);
+    }
+
+    .bouquet-card:hover .btn-choose {
+      background: linear-gradient(135deg, #ff3b68, #ff5e7e);
+      transform: scale(1.04);
+      box-shadow: 0 8px 20px rgba(255, 59, 104, 0.4);
+    }
+
+    /* ----------------------------------------------------
+       VIEW 2: DEDICATED BOUQUET WINDOW / EXPERIENCE
+       ---------------------------------------------------- */
+    #detail-view {
+      display: none;
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    .back-btn-bar {
+      margin-bottom: 24px;
+    }
+
+    .btn-back {
+      background: white;
+      border: 2px solid var(--border-pink);
+      padding: 10px 22px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--pink-deep);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      font-family: 'Quicksand', sans-serif;
+      box-shadow: 0 4px 12px rgba(255, 94, 126, 0.1);
+    }
+
+    .btn-back:hover {
+      background: #ffeef2;
+      transform: translateX(-4px);
+    }
+
+    .detail-hero {
+      text-align: center;
+      background: white;
+      padding: 40px 30px;
+      border-radius: 28px;
+      box-shadow: var(--shadow-cute);
+      border: 2px solid var(--border-pink);
+      margin-bottom: 50px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .detail-hero-icon {
+      font-size: 65px;
+      margin-bottom: 12px;
+      display: inline-block;
+      animation: bounce 2s infinite ease-in-out;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .detail-hero h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 46px;
+      color: var(--pink-deep);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .detail-hero-subtitle {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 620px;
+      margin: 0 auto 20px auto;
+      font-weight: 500;
+    }
+
+    /* Polaroids in Detail View */
+    .section-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 42px;
+      text-align: center;
+      margin: 40px 0 25px 0;
+      color: var(--pink-deep);
+      font-weight: 700;
+    }
+
+    .polaroids-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 10px;
+      margin-bottom: 60px;
+    }
+
+    .polaroid {
+      background: white;
+      padding: 16px 16px 24px 16px;
+      border-radius: 6px;
+      box-shadow: 0 12px 28px rgba(255, 94, 126, 0.12);
+      border: 1px solid var(--border-pink);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .polaroid:hover {
+      transform: translateY(-8px) rotate(0deg) !important;
+      box-shadow: 0 20px 40px rgba(255, 94, 126, 0.22);
+    }
+
+    .polaroid:nth-child(1) { transform: rotate(-2.5deg); }
+    .polaroid:nth-child(2) { transform: rotate(2deg); }
+    .polaroid:nth-child(3) { transform: rotate(-1.5deg); }
+    .polaroid:nth-child(4) { transform: rotate(2.5deg); }
+    .polaroid:nth-child(5) { transform: rotate(-2deg); }
+
+    /* Cute Pink Washi tape effect */
+    .polaroid::before {
+      content: '';
+      position: absolute;
+      top: -12px;
+      left: 35%;
+      width: 80px;
+      height: 24px;
+      background: rgba(255, 182, 193, 0.7);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      transform: rotate(-2deg);
+      border-radius: 2px;
+    }
+
+    .polaroid-img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      object-position: center 20%;
+      border-radius: 4px;
+      display: block;
+      background: #ffeef2;
+    }
+
+    .polaroid-caption {
+      font-family: 'Caveat', cursive;
+      font-size: 24px;
+      text-align: center;
+      margin-top: 14px;
+      color: var(--pink-deep);
+      font-weight: 700;
+    }
+
+    /* Heartfelt Letter Card */
+    .letter-container {
+      background: #fffdfd;
+      border: 2px dashed var(--pink-accent);
+      border-radius: 24px;
+      padding: 45px 40px;
+      box-shadow: var(--shadow-cute);
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    .letter-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px dashed #ffd5df;
+      padding-bottom: 18px;
+      margin-bottom: 24px;
+    }
+
+    .letter-top h3 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 34px;
+      color: var(--pink-deep);
+      font-weight: 700;
+    }
+
+    .letter-date {
+      font-size: 14px;
+      color: var(--pink-primary);
+      font-weight: 700;
+      background: #fff0f5;
+      padding: 4px 14px;
+      border-radius: 15px;
+    }
+
+    .letter-content {
+      font-size: 16.5px;
+      line-height: 1.85;
+      color: #4a3b47;
+    }
+
+    .letter-content p {
+      margin-bottom: 16px;
+    }
+
+    .letter-sign {
+      font-family: 'Caveat', cursive;
+      font-size: 32px;
+      margin-top: 30px;
+      color: var(--pink-deep);
+      text-align: right;
+      font-weight: 700;
+    }
+
+    .celebrate-action {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .btn-celebrate {
+      background: linear-gradient(135deg, #ff416c, #ff4b2b);
+      color: white;
+      border: none;
+      padding: 16px 36px;
+      font-size: 17px;
+      font-weight: 700;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(255, 65, 108, 0.4);
+      transition: all 0.3s ease;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    .btn-celebrate:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 14px 32px rgba(255, 65, 108, 0.5);
+    }
+
+    /* Cute Toast for Virtual Hug */
+    .hug-toast {
+      position: fixed;
+      bottom: 35px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #ffffff;
+      color: var(--pink-deep);
+      padding: 15px 30px;
+      border-radius: 35px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 16.5px;
+      font-weight: 700;
+      box-shadow: 0 12px 35px rgba(255, 94, 126, 0.35);
+      border: 2px solid var(--border-pink);
+      z-index: 9999;
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hug-toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* Next Page Action on Flowers Page */
+    .next-page-action {
+      text-align: center;
+      margin-top: 50px;
+      margin-bottom: 20px;
+      padding: 30px 20px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 25px;
+      border: 2px dashed var(--border-pink);
+    }
+
+    .next-prompt {
+      font-family: 'Caveat', cursive;
+      font-size: 26px;
+      color: var(--pink-deep);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .btn-next-page {
+      font-size: 19px !important;
+      padding: 16px 48px !important;
+      letter-spacing: 0.5px;
+    }
+
+    /* ----------------------------------------------------
+       VIEW 3: SPECIAL BOYFRIEND SURPRISE PAGE
+       ---------------------------------------------------- */
+    #surprise-view {
+      display: none;
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    .surprise-hero {
+      background: white;
+      border-radius: 28px;
+      padding: 45px 30px;
+      box-shadow: var(--shadow-cute);
+      border: 2px solid var(--border-pink);
+      text-align: center;
+      position: relative;
+      margin-bottom: 40px;
+    }
+
+    .surprise-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 50px;
+      color: var(--pink-deep);
+      margin-bottom: 12px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .surprise-subtitle {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 620px;
+      margin: 0 auto 30px auto;
+      font-weight: 500;
+    }
+
+    .gift-box-wrapper {
+      display: inline-block;
+      cursor: pointer;
+      padding: 25px 35px;
+      background: #fff5f8;
+      border: 2px dashed var(--pink-accent);
+      border-radius: 24px;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 24px rgba(255, 94, 126, 0.15);
+      margin-bottom: 25px;
+    }
+
+    .gift-box-wrapper:hover {
+      transform: scale(1.05) translateY(-4px);
+      box-shadow: 0 14px 32px rgba(255, 94, 126, 0.28);
+      background: #ffeef3;
+    }
+
+    .gift-box {
+      font-size: 80px;
+      animation: bounce 2s infinite ease-in-out;
+      margin-bottom: 8px;
+    }
+
+    .gift-tap-text {
+      font-family: 'Caveat', cursive;
+      font-size: 24px;
+      color: var(--pink-deep);
+      font-weight: 700;
+    }
+
+    .surprise-section-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 38px;
+      color: var(--pink-deep);
+      margin: 30px 0 10px 0;
+      font-weight: 700;
+    }
+
+    .coupons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 22px;
+      margin: 25px 0 35px 0;
+      text-align: left;
+    }
+
+    .coupon-card {
+      background: #fff9fb;
+      border: 2px dashed #ffb3c6;
+      border-radius: 20px;
+      padding: 22px 18px;
+      position: relative;
+      transition: all 0.25s ease;
+      box-shadow: 0 6px 16px rgba(255, 94, 126, 0.08);
+    }
+
+    .coupon-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--pink-primary);
+      box-shadow: 0 10px 24px rgba(255, 94, 126, 0.2);
+    }
+
+    .coupon-icon {
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+
+    .coupon-title {
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--pink-deep);
+      margin-bottom: 8px;
+    }
+
+    .coupon-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 14px;
+    }
+
+    .coupon-tag {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      background: #ffe3ea;
+      color: var(--pink-deep);
+    }
+
+    .final-love-box {
+      background: #fffdfd;
+      border: 2px dashed var(--pink-accent);
+      border-radius: 24px;
+      padding: 35px 30px;
+      margin-top: 30px;
+      box-shadow: var(--shadow-cute);
+      text-align: center;
+    }
+
+    .final-love-box h3 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 36px;
+      color: var(--pink-deep);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .final-love-box p {
+      font-size: 17px;
+      color: #4a3b47;
+      line-height: 1.8;
+      max-width: 650px;
+      margin: 0 auto 20px auto;
+    }
+
+    .final-sign {
+      font-family: 'Caveat', cursive;
+      font-size: 30px;
+      color: var(--pink-deep);
+      font-weight: 700;
+      text-align: right;
+    }
+
+    /* ----------------------------------------------------
+       HEART COLLAGE SCRAPBOOK (Matching User Reference)
+       ---------------------------------------------------- */
+    .heart-scrapbook-wrapper {
+      position: relative;
+      margin: 20px auto 40px auto;
+      max-width: 860px;
+      width: 100%;
+      background: repeating-linear-gradient(90deg, #edf5fd 0px, #edf5fd 28px, #ffffff 28px, #ffffff 56px);
+      border: 3px solid #ffccd5;
+      border-radius: 28px;
+      padding: 35px 25px 50px 25px;
+      box-shadow: 0 16px 45px rgba(255, 94, 126, 0.18);
+      overflow: hidden;
+    }
+
+    /* Cute Decorative Stars & Stickers */
+    .collage-star {
+      position: absolute;
+      color: #ff8da5;
+      font-size: 24px;
+      opacity: 0.8;
+      pointer-events: none;
+      animation: gentleStar 3s infinite ease-in-out alternate;
+    }
+    .star-1 { top: 25px; left: 25px; font-size: 32px; }
+    .star-2 { top: 30px; right: 35px; font-size: 28px; }
+    .star-3 { bottom: 85px; left: 18%; font-size: 24px; }
+    .star-4 { bottom: 120px; right: 16%; font-size: 26px; }
+
+    @keyframes gentleStar {
+      0% { transform: scale(0.9) rotate(0deg); opacity: 0.6; }
+      100% { transform: scale(1.15) rotate(15deg); opacity: 1; }
+    }
+
+    /* Bunny Sticker */
+    .bunny-sticker {
+      position: absolute;
+      bottom: -5px;
+      left: 10px;
+      font-size: 80px;
+      pointer-events: none;
+      z-index: 10;
+      filter: drop-shadow(0 6px 12px rgba(255, 94, 126, 0.25));
+      animation: bunnyPeek 3s infinite ease-in-out;
+    }
+
+    @keyframes bunnyPeek {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* Speech Bubble & Love Sticker */
+    .speech-bubble-sticker {
+      position: absolute;
+      bottom: 155px;
+      right: 18%;
+      background: #ffffff;
+      border: 2px solid #8338ec;
+      color: #8338ec;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 5px 12px;
+      border-radius: 18px;
+      box-shadow: 0 4px 10px rgba(131, 56, 236, 0.15);
+      z-index: 12;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .heart-stamp-sticker {
+      position: absolute;
+      bottom: 45px;
+      right: 25px;
+      background: #ff758f;
+      color: white;
+      font-family: 'Caveat', cursive;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 10px 14px;
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(-12deg);
+      box-shadow: 0 6px 15px rgba(255, 117, 143, 0.35);
+      z-index: 12;
+      pointer-events: none;
+      text-align: center;
+      line-height: 1.1;
+    }
+
+    /* 5-Column Heart Collage */
+    .heart-collage-grid {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 12px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .heart-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .col-1 {
+      width: 17.5%;
+      margin-top: 130px;
+    }
+
+    .col-2 {
+      width: 21%;
+      margin-top: 0px;
+    }
+
+    .col-3 {
+      width: 23%;
+      margin-top: 75px;
+    }
+
+    .col-4 {
+      width: 21%;
+      margin-top: 0px;
+    }
+
+    .col-5 {
+      width: 17.5%;
+      margin-top: 130px;
+    }
+
+    /* Photo Card in Collage */
+    .collage-photo-card {
+      background: #ffffff;
+      padding: 4px;
+      border-radius: 8px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      border: 3.5px solid #ffffff;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .collage-photo-card:hover {
+      transform: scale(1.08) translateY(-4px);
+      box-shadow: 0 16px 32px rgba(255, 94, 126, 0.35);
+      z-index: 15;
+      border-color: #ffccd5;
+    }
+
+    .collage-photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 4px;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .collage-photo-card:hover img {
+      transform: scale(1.06);
+    }
+
+    /* Card Heights */
+    .h-single {
+      height: 195px;
+    }
+
+    .h-lobe-top {
+      height: 165px;
+    }
+
+    .h-lobe-mid {
+      height: 165px;
+    }
+
+    .h-lobe-bottom {
+      height: 115px;
+      width: 82%;
+    }
+
+    .col-2 .h-lobe-bottom {
+      align-self: flex-end;
+    }
+
+    .col-4 .h-lobe-bottom {
+      align-self: flex-start;
+    }
+
+    .h-center-top {
+      height: 220px;
+    }
+
+    .h-center-bottom {
+      height: 235px;
+    }
+
+    /* Out to in fly animation */
+    .collage-animating {
+      animation: collageFlyIn 1.1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    @keyframes collageFlyIn {
+      0% {
+        opacity: 0;
+        transform: translate(var(--dx, 0px), var(--dy, 0px)) scale(0.3) rotate(var(--rot, 0deg));
+      }
+      70% {
+        opacity: 1;
+        transform: translate(0px, 0px) scale(1.05) rotate(calc(var(--rot, 0deg) * 0.1));
+      }
+      100% {
+        opacity: 1;
+        transform: translate(0px, 0px) scale(1) rotate(0deg);
+      }
+    }
+
+    /* Lightbox Modal */
+    .lightbox-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: fadeIn 0.25s ease forwards;
+    }
+
+    .lightbox-content {
+      background: white;
+      border-radius: 24px;
+      padding: 16px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+      border: 3px solid var(--border-pink);
+    }
+
+    .lightbox-content img {
+      width: 100%;
+      max-height: 65vh;
+      object-fit: contain;
+      border-radius: 16px;
+      display: block;
+      margin: 0 auto;
+      background: #fff5f8;
+    }
+
+    .lightbox-caption {
+      font-family: 'Caveat', cursive;
+      font-size: 26px;
+      color: var(--pink-deep);
+      font-weight: 700;
+      margin-top: 14px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      background: #ff416c;
+      color: white;
+      border: 3px solid white;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      transition: transform 0.2s ease;
+    }
+
+    .lightbox-close:hover {
+      transform: scale(1.15) rotate(90deg);
+    }
+
+    /* Responsive adjustments for Heart Scrapbook Collage */
+    @media (max-width: 820px) {
+      .heart-scrapbook-wrapper {
+        padding: 25px 15px 40px 15px;
+      }
+      .heart-collage-grid {
+        gap: 8px;
+      }
+      .heart-col {
+        gap: 8px;
+      }
+      .col-1 { margin-top: 90px; }
+      .col-3 { margin-top: 50px; }
+      .col-5 { margin-top: 90px; }
+
+      .h-single { height: 145px; }
+      .h-lobe-top { height: 120px; }
+      .h-lobe-mid { height: 120px; }
+      .h-lobe-bottom { height: 85px; }
+      .h-center-top { height: 160px; }
+      .h-center-bottom { height: 175px; }
+      .bunny-sticker { font-size: 60px; }
+    }
+
+    @media (max-width: 540px) {
+      .heart-scrapbook-wrapper {
+        padding: 18px 8px 30px 8px;
+        border-radius: 20px;
+      }
+      .heart-collage-grid {
+        gap: 5px;
+      }
+      .heart-col {
+        gap: 5px;
+      }
+      .col-1 { margin-top: 60px; }
+      .col-3 { margin-top: 35px; }
+      .col-5 { margin-top: 60px; }
+
+      .h-single { height: 98px; }
+      .h-lobe-top { height: 82px; }
+      .h-lobe-mid { height: 82px; }
+      .h-lobe-bottom { height: 58px; }
+      .h-center-top { height: 110px; }
+      .h-center-bottom { height: 120px; }
+      .bunny-sticker { font-size: 42px; bottom: -2px; left: 4px; }
+      .speech-bubble-sticker { font-size: 10px; padding: 3px 8px; bottom: 100px; }
+      .heart-stamp-sticker { font-size: 10px; padding: 6px 8px; bottom: 20px; right: 10px; }
+    }
+
+
+
+    /* 2-Second Spotlight Sequence Modal */
+    .spotlight-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.68);
+      backdrop-filter: blur(6px);
+      z-index: 10005;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .spotlight-card {
+      background: white;
+      border-radius: 24px;
+      padding: 16px 16px 20px 16px;
+      max-width: 440px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+      border: 3.5px solid #ffccd5;
+      animation: popSpotlight 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    @keyframes popSpotlight {
+      0% { opacity: 0; transform: scale(0.65) translateY(25px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .spotlight-card.closing {
+      animation: hideSpotlight 0.22s ease forwards;
+    }
+
+    @keyframes hideSpotlight {
+      0% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(0.65) translateY(25px); }
+    }
+
+    .spotlight-badge {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--pink-deep);
+      background: #ffe5ec;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .spotlight-img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      border-radius: 14px;
+      display: block;
+      margin: 0 auto;
+      background: #fff5f8;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+
+    .spotlight-caption {
+      font-family: 'Caveat', cursive;
+      font-size: 26px;
+      color: var(--pink-deep);
+      font-weight: 700;
+      margin-top: 12px;
+    }
+
+    .spotlight-progress-bar {
+      height: 4px;
+      background: #ffd5df;
+      border-radius: 2px;
+      margin-top: 12px;
+      overflow: hidden;
+    }
+
+    .spotlight-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ff416c, #ff4b2b);
+      width: 0%;
+      transition: width 1.8s linear;
+    }
+
+    .spotlight-skip {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      background: #ffffff;
+      color: var(--pink-deep);
+      border: 2px solid var(--border-pink);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    /* ====================================================
+       PAGE 4: ONLINE GIFTS WISHLIST STYLES
+       ==================================================== */
+    .gifts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 26px;
+      margin-top: 32px;
+      text-align: left;
+    }
+
+    .gift-card {
+      background: #ffffff;
+      border-radius: 22px;
+      border: 2.5px solid var(--border-pink);
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(255, 94, 126, 0.12);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .gift-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 18px 38px rgba(255, 94, 126, 0.28);
+      border-color: #ff85a1;
+    }
+
+    .gift-img-wrap {
+      width: 100%;
+      height: 250px;
+      position: relative;
+      overflow: hidden;
+      background: #fff5f8;
+      cursor: pointer;
+    }
+
+    .gift-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .gift-card:hover .gift-img {
+      transform: scale(1.06);
+    }
+
+    .gift-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(6px);
+      color: var(--pink-deep);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border: 1px solid var(--border-pink);
+      z-index: 2;
+    }
+
+    .gift-zoom-hint {
+      position: absolute;
+      bottom: 10px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.6);
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 12px;
+      backdrop-filter: blur(4px);
+    }
+
+    .gift-card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      background: #ffffff;
+    }
+
+    .gift-title {
+      font-size: 21px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .gift-price-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .gift-price-tag {
+      display: inline-block;
+      background: #ffe5ec;
+      color: var(--pink-deep);
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 15px;
+    }
+
+    .gift-shipping-tag {
+      font-size: 12px;
+      color: #2a9d8f;
+      font-weight: 700;
+    }
+
+    .gift-desc {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 18px;
+      flex-grow: 1;
+    }
+
+    .gift-claim-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #ff4d6d, #ff758f);
+      color: #ffffff;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 25px;
+      font-size: 14.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
+      transition: all 0.25s ease;
+    }
+
+    .gift-claim-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 7px 20px rgba(255, 77, 109, 0.45);
+      background: linear-gradient(135deg, #e63946, #ff4d6d);
+    }
+
+    .gift-claim-btn.claimed {
+      background: linear-gradient(135deg, #2a9d8f, #48cae4);
+      box-shadow: 0 4px 15px rgba(42, 157, 143, 0.3);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 15px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    footer span {
+      color: var(--pink-deep);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Romantic Emojis / Hearts in Background -->
+  <div class="floating-decorations">
+    <div class="heart-float" style="left: 8%; animation-delay: 0s;">💖</div>
+    <div class="heart-float" style="left: 24%; animation-delay: 3s;">🎀</div>
+    <div class="heart-float" style="left: 45%; animation-delay: 1.5s;">🌸</div>
+    <div class="heart-float" style="left: 68%; animation-delay: 5s;">💕</div>
+    <div class="heart-float" style="left: 88%; animation-delay: 7s;">✨</div>
+  </div>
+
+  <div class="container">
+
+    <!-- =========================================================
+         PAGE 0: "DO YOU LOVE ME?" INTERACTIVE GATE
+         ========================================================= -->
+    <div id="gate-view">
+      <div class="gate-card">
+        <div class="gate-sticker">🥺👉👈</div>
+        <div class="cute-ribbon" style="margin-bottom: 12px; font-size: 13px;">
+          🎀 URGENT & IMPORTANT QUESTION 🎀
+        </div>
+        <h1 class="gate-title">DO YOU LOVE ME ??? 💖</h1>
+        <p class="gate-subtitle">Think very carefully before answering, Anshh... 🤭</p>
+
+        <div class="gate-btn-arena" id="btn-arena">
+          <button class="btn-yes pulse-btn" id="btn-yes" onclick="handleYesClick()">
+            YES, ALWAYS! 🥰
+          </button>
+          <button class="btn-no" id="btn-no" onmouseover="moveNoButton()" onclick="moveNoButton()">
+            No 🙄
+          </button>
+        </div>
+        <div class="gate-warning" id="gate-hint">
+          (P.S. There is only ONE right answer! 💕)
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         PAGE 1: CUTE BOYFRIEND'S DAY FLOWER SELECTION
+         ========================================================= -->
+    <div id="selection-view">
+      <header class="hero">
+        <div class="cute-ribbon">
+          🎀 Happy National Boyfriend's Day 🎀
+        </div>
+        
+        <h1>Happy Boyfriend's Day,<br><span class="name-highlight">Anshh! 💖</span></h1>
+        
+        <p>To my absolute favorite human, my safe space, and the best boyfriend ever. I made three special bouquets just for you—pick your favorite to open its surprise letters & memories! 🌸</p>
+
+        <div class="tap-hint">👇 Tap this button for a little surprise! 👇</div>
+        <button class="btn-pink-hero pulse-btn" onclick="triggerPetalBurst()">
+          <span>👉 Press to Shower Anshh with Love! 💖 ✨</span>
+        </button>
+      </header>
+
+      <div class="bouquet-grid">
+        <!-- Bouquet 1: Blush Tulips & Roses -->
+        <div class="bouquet-card" onclick="openBouquet('tulip')">
+          <div class="bouquet-img-wrapper">
+            <span class="cute-badge">🌷 Sweet & Romantic</span>
+            <img src="https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=700&q=80" alt="Pastel Tulips Bouquet">
+          </div>
+          <div class="bouquet-info">
+            <h3>Pastel Tulips</h3>
+            <div class="bouquet-meaning">Deep Love • Safe Heaven • Comfort</div>
+            <p>For the boyfriend who always makes me feel loved, safe, and at peace no matter how crazy life gets.</p>
+            <button class="btn-choose">Open This Bouquet 💌</button>
+          </div>
+        </div>
+
+        <!-- Bouquet 2: Sunflowers -->
+        <div class="bouquet-card" onclick="openBouquet('sunflower')">
+          <div class="bouquet-img-wrapper">
+            <span class="cute-badge">☀️ Joy & Laughter</span>
+            <img src="https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=700&q=80" alt="Golden Sunflowers Bouquet">
+          </div>
+          <div class="bouquet-info">
+            <h3>Golden Sunflowers</h3>
+            <div class="bouquet-meaning">My Sunshine • Laughter • Warmth</div>
+            <p>For the guy who lights up my whole world with his smile and gives the warmest, most comforting hugs.</p>
+            <button class="btn-choose">Open This Bouquet 💌</button>
+          </div>
+        </div>
+
+        <!-- Bouquet 3: Classic Red Roses -->
+        <div class="bouquet-card" onclick="openBouquet('rose')">
+          <div class="bouquet-img-wrapper">
+            <span class="cute-badge">🌹 Forever & Always</span>
+            <img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=800&q=80" alt="Romantic Red Roses Bouquet">
+          </div>
+          <div class="bouquet-info">
+            <h3>Velvet Red Roses</h3>
+            <div class="bouquet-meaning">Deep Passion • Pure Love • Forever Mine</div>
+            <p>For the boy who completely stole my heart, my favorite person to love, and the one I choose today and every day.</p>
+            <button class="btn-choose">Open This Bouquet 💌</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- =========================================================
+         PAGE 2: DEDICATED BOUQUET WINDOW / EXPERIENCE
+         ========================================================= -->
+    <div id="detail-view">
+
+      <!-- Dynamic Header -->
+      <div class="detail-hero">
+        <div class="detail-hero-icon" id="detail-icon">🌷</div>
+        <h2 id="detail-title">Pastel Tulips for Anshh 💖</h2>
+        <p class="detail-hero-subtitle" id="detail-subtitle">
+          "Loving you is my favorite thing to do."
+        </p>
+        <button class="btn-pink-hero" style="font-size: 14px; padding: 10px 24px;" onclick="triggerPetalBurst()">
+          🌸 Shower with Hearts!
+        </button>
+      </div>
+
+      <!-- Photo Memories -->
+      <h2 class="section-title">Our Sweetest Memories 📸</h2>
+      <div class="polaroids-grid" id="detail-polaroids">
+        <!-- Injected via JavaScript based on chosen bouquet -->
+      </div>
+
+      <!-- Dedicated Letter -->
+      <div class="letter-container">
+        <div class="letter-top">
+          <h3 id="letter-heading">A Love Note for Anshh 💌</h3>
+          <span class="letter-date">Happy Boyfriend's Day ❤️</span>
+        </div>
+        <div class="letter-content" id="letter-body">
+          <!-- Injected via JavaScript -->
+        </div>
+        <div class="letter-sign">
+          With all my love, always and forever,<br>
+          Shreya 💖
+        </div>
+      </div>
+
+      <div class="celebrate-action" style="text-align: center; margin: 40px 0 20px 0; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; align-items: center;">
+        <button class="btn-pink-hero" onclick="exploreNextFlower()" style="padding: 15px 32px; font-size: 16px; border-radius: 35px;">
+          <span>🌸 All Bouquets</span>
+        </button>
+        <button id="detail-next-btn" class="btn-pink-hero pulse-btn btn-next-page" onclick="openNextPage()" style="padding: 15px 36px; font-size: 16.5px; border-radius: 35px; display: none;">
+          <span>Next 💕 →</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- =========================================================
+         PAGE 3: SPECIAL BOYFRIEND'S DAY SURPRISE VIEW
+         ========================================================= -->
+    <div id="surprise-view">
+
+      <div class="back-btn-bar">
+        <button class="btn-back" onclick="goBackFromNextPage()">
+          ← Return to Flower Bouquet
+        </button>
+      </div>
+
+      <div class="surprise-hero" style="background: transparent; border: none; box-shadow: none; padding: 10px 0;">
+        <!-- Red Title Only (all other text above removed as requested) -->
+        <h1 class="surprise-title" style="color: #e03158; font-size: 52px; margin-bottom: 25px; text-shadow: 2px 2px 0px rgba(255, 182, 193, 0.4);">
+          My Whole Heart Belongs To You, Anshh 💖
+        </h1>
+
+        <!-- Heart Scrapbook Collage (Matching User's Reference Layout) -->
+        <div class="heart-scrapbook-wrapper">
+          <!-- Cute Stars & Stickers -->
+          <div class="collage-star star-1">★</div>
+          <div class="collage-star star-2">★</div>
+          <div class="collage-star star-3">★</div>
+          <div class="collage-star star-4">★</div>
+
+          <div class="bunny-sticker">🐰</div>
+          <div class="speech-bubble-sticker">how cute! 💕</div>
+          <div class="heart-stamp-sticker">LOVE IS<br>WHEREVER<br>YOU ARE ❤️</div>
+
+          <!-- 5-Column Heart Collage -->
+          <div class="heart-collage-grid" id="heart-collage">
+            <!-- Column 1 (Far Left Shoulder) -->
+            <div class="heart-col col-1">
+              <div class="collage-photo-card h-single collage-animating" 
+                   style="--dx: -360px; --dy: 0px; --rot: -15deg; animation-delay: 0.05s;"
+                   onclick="openLightbox('images/heart10.jpg', 'My adventurous boy on his ride 🏍️✨')"
+                   title="Tap to zoom">
+                <img src="images/heart10.jpg" style="object-position: center 28%;" alt="Anshh on Royal Enfield">
+              </div>
+            </div>
+
+            <!-- Column 2 (Left Lobe Peak & Side) -->
+            <div class="heart-col col-2">
+              <div class="collage-photo-card h-lobe-top collage-animating" 
+                   style="--dx: -280px; --dy: -350px; --rot: 12deg; animation-delay: 0.15s;"
+                   onclick="openLightbox('images/heart6.jpg', 'Look at how handsome you are! 🤵‍♂️💖')"
+                   title="Tap to zoom">
+                <img src="images/heart6.jpg" style="object-position: center 22%;" alt="Anshh in Tuxedo">
+              </div>
+              <div class="collage-photo-card h-lobe-mid collage-animating" 
+                   style="--dx: -320px; --dy: 40px; --rot: -10deg; animation-delay: 0.25s;"
+                   onclick="openLightbox('images/heart3.jpg', 'That warm, comforting smile 💫')"
+                   title="Tap to zoom">
+                <img src="images/heart3.jpg" style="object-position: center 45%;" alt="Anshh with fairy lights">
+              </div>
+              <div class="collage-photo-card h-lobe-bottom collage-animating" 
+                   style="--dx: -200px; --dy: 300px; --rot: 15deg; animation-delay: 0.35s;"
+                   onclick="openLightbox('images/heart8.jpg', 'The purest, sweetest boy with a puppy 🐾🥹')"
+                   title="Tap to zoom">
+                <img src="images/heart8.jpg" style="object-position: center 36%;" alt="Anshh with puppy">
+              </div>
+            </div>
+
+            <!-- Column 3 (Center Cleft Dip & Bottom Tip) -->
+            <div class="heart-col col-3">
+              <div class="collage-photo-card h-center-top collage-animating" 
+                   style="--dx: 0px; --dy: -420px; --rot: -8deg; animation-delay: 0.42s;"
+                   onclick="openLightbox('images/heart5.jpg', 'The boy who stole my entire heart 🌹')"
+                   title="Tap to zoom">
+                <img src="images/heart5.jpg" style="object-position: center 28%;" alt="Anshh handsome portrait">
+              </div>
+              <div class="collage-photo-card h-center-bottom collage-animating" 
+                   style="--dx: 0px; --dy: 480px; --rot: 6deg; animation-delay: 0.50s;"
+                   onclick="openLightbox('images/heart4.jpg', 'My favorite smile in the whole universe 🌊❤️')"
+                   title="Tap to zoom">
+                <img src="images/heart4.jpg" style="object-position: center 38%;" alt="Anshh beach smile">
+              </div>
+            </div>
+
+            <!-- Column 4 (Right Lobe Peak & Side) -->
+            <div class="heart-col col-4">
+              <div class="collage-photo-card h-lobe-top collage-animating" 
+                   style="--dx: 280px; --dy: -350px; --rot: -12deg; animation-delay: 0.58s;"
+                   onclick="openLightbox('images/heart7.jpg', 'My rockstar, forever proud of you 🎸🎶')"
+                   title="Tap to zoom">
+                <img src="images/heart7.jpg" style="object-position: center 35%;" alt="Anshh guitar on stage">
+              </div>
+              <div class="collage-photo-card h-lobe-mid collage-animating" 
+                   style="--dx: 320px; --dy: 40px; --rot: 10deg; animation-delay: 0.66s;"
+                   onclick="openLightbox('images/heart1.jpg', 'Effortlessly handsome 🖤')"
+                   title="Tap to zoom">
+                <img src="images/heart1.jpg" style="object-position: center 30%;" alt="Anshh lighting cigarette B&W">
+              </div>
+              <div class="collage-photo-card h-lobe-bottom collage-animating" 
+                   style="--dx: 200px; --dy: 300px; --rot: -15deg; animation-delay: 0.74s;"
+                   onclick="openLightbox('images/heart9.jpg', 'My favorite superhero 🕷️❤️')"
+                   title="Tap to zoom">
+                <img src="images/heart9.jpg" style="object-position: center 25%;" alt="Anshh in red spider shirt">
+              </div>
+            </div>
+
+            <!-- Column 5 (Far Right Shoulder) -->
+            <div class="heart-col col-5">
+              <div class="collage-photo-card h-single collage-animating" 
+                   style="--dx: 360px; --dy: 0px; --rot: 15deg; animation-delay: 0.82s;"
+                   onclick="openLightbox('images/heart2.jpg', 'My sharp, charming boy ✨')"
+                   title="Tap to zoom">
+                <img src="images/heart2.jpg" style="object-position: center 48%;" alt="Anshh mirror selfie">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons: Return, Replay Slideshow, and Next Option -->
+        <div style="text-align: center; margin-top: 35px; margin-bottom: 20px; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; align-items: center;">
+          <button class="btn-back" onclick="goBackFromNextPage()" style="box-shadow: 0 4px 15px rgba(255, 94, 126, 0.15);">
+            <span>🌸 Return to Flower Bouquet</span>
+          </button>
+          <button class="btn-pink-hero" onclick="startHeartSpotlightSequence()" style="padding: 14px 28px; font-size: 15px; border-radius: 35px; box-shadow: 0 8px 25px rgba(255, 94, 126, 0.35);">
+            <span>✨ Replay Slideshow 💕</span>
+          </button>
+          <button class="btn-pink-hero pulse-btn btn-next-page" onclick="openPageFour()" style="padding: 14px 34px; font-size: 16px; border-radius: 35px; box-shadow: 0 8px 25px rgba(255, 94, 126, 0.35);">
+            <span>Next 💕 →</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- =========================================================
+         PAGE 4: NEXT SPECIAL CHAPTER / SURPRISE
+         ========================================================= -->
+    <div id="page-four-view" style="display: none;">
+      <div class="back-btn-bar">
+        <button class="btn-back" onclick="goBackFromPageFour()">
+          ← Return to Heart Collage
+        </button>
+      </div>
+
+      <div class="surprise-hero" style="text-align: center; padding: 25px 20px 40px 20px; background: rgba(255, 255, 255, 0.92); border-radius: 28px; border: 2.5px solid var(--border-pink); box-shadow: 0 15px 40px rgba(255, 94, 126, 0.15); margin-top: 15px;">
+        <h1 class="surprise-title" style="color: #e03158; font-size: 42px; font-weight: 800; line-height: 1.35; margin: 0 auto; max-width: 840px; text-shadow: 2px 2px 0px rgba(255, 182, 193, 0.4);">
+          <strong>Things i wanna gift you , but can only afford to send it online 😂</strong>
+        </h1>
+        <div id="online-gifts-container" style="margin-top: 30px;">
+          <div class="gifts-grid">
+            
+            <!-- Gift 1: PS5 -->
+            <div class="gift-card">
+              <div class="gift-img-wrap" onclick="openLightbox('images/gift_ps5.jpg', 'Sony PlayStation 5 Console 🎮')">
+                <span class="gift-badge">🎮 Top Wishlist</span>
+                <img class="gift-img" src="images/gift_ps5.jpg" alt="PlayStation 5">
+                <span class="gift-zoom-hint">🔍 Tap to Zoom</span>
+              </div>
+              <div class="gift-card-body">
+                <div class="gift-title">PlayStation 5</div>
+                <div class="gift-price-row">
+                  <span class="gift-price-tag">Price: ₹0.00 💸</span>
+                  <span class="gift-shipping-tag">✓ Sent Online</span>
+                </div>
+                <div class="gift-desc">
+                  So you can play all your favorite games in 4K 120FPS (as long as you still reply to my texts fast! 😂❤️)
+                </div>
+                <button class="gift-claim-btn" onclick="claimGift(this, 'PS5')">
+                  <span>🎁 Tap to Claim Virtual PS5</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Gift 2: Hot Wheels -->
+            <div class="gift-card">
+              <div class="gift-img-wrap" onclick="openLightbox('images/gift_hotwheels.jpg', 'Hot Wheels Supercars Collection 🏎️')">
+                <span class="gift-badge">🏎️ Dream Garage</span>
+                <img class="gift-img" src="images/gift_hotwheels.jpg" alt="Hot Wheels Collection">
+                <span class="gift-zoom-hint">🔍 Tap to Zoom</span>
+              </div>
+              <div class="gift-card-body">
+                <div class="gift-title">Hot Wheels Collection</div>
+                <div class="gift-price-row">
+                  <span class="gift-price-tag">Price: ₹0.00 💸</span>
+                  <span class="gift-shipping-tag">✓ Sent Online</span>
+                </div>
+                <div class="gift-desc">
+                  Because the boy in you deserves every single supercar to zoom around across the table! 🚗💨
+                </div>
+                <button class="gift-claim-btn" onclick="claimGift(this, 'Hot Wheels')">
+                  <span>🎁 Tap to Claim Garage</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Gift 3: Puma Ferrari Edition Shoes -->
+            <div class="gift-card">
+              <div class="gift-img-wrap" onclick="openLightbox('images/gift_shoes.jpg', 'Puma Scuderia Ferrari Edition Shoes 👟')">
+                <span class="gift-badge">👟 Drippy & Fast</span>
+                <img class="gift-img" src="images/gift_shoes.jpg" alt="Puma Ferrari Edition Shoes">
+                <span class="gift-zoom-hint">🔍 Tap to Zoom</span>
+              </div>
+              <div class="gift-card-body">
+                <div class="gift-title">Puma Ferrari Shoes</div>
+                <div class="gift-price-row">
+                  <span class="gift-price-tag">Price: ₹0.00 💸</span>
+                  <span class="gift-shipping-tag">✓ Sent Online</span>
+                </div>
+                <div class="gift-desc">
+                  Because my handsome boy needs the sharpest, fastest kicks with that iconic Ferrari horsepower. 🏎️🔥
+                </div>
+                <button class="gift-claim-btn" onclick="claimGift(this, 'Puma Ferrari Shoes')">
+                  <span>🎁 Tap to Claim Shoes</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Gift 4: Gaming Chair -->
+            <div class="gift-card">
+              <div class="gift-img-wrap" onclick="openLightbox('images/gift_gaming_chair.jpg', 'Apex Ergonomic Gaming Chair 💺')">
+                <span class="gift-badge">💺 100% Back Support</span>
+                <img class="gift-img" src="images/gift_gaming_chair.jpg" alt="Ergonomic Gaming Chair">
+                <span class="gift-zoom-hint">🔍 Tap to Zoom</span>
+              </div>
+              <div class="gift-card-body">
+                <div class="gift-title">Ergonomic Gaming Chair</div>
+                <div class="gift-price-row">
+                  <span class="gift-price-tag">Price: ₹0.00 💸</span>
+                  <span class="gift-shipping-tag">✓ Sent Online</span>
+                </div>
+                <div class="gift-desc">
+                  To protect that cute back and spine of yours during those late-night clutch gaming sessions! 💺✨
+                </div>
+                <button class="gift-claim-btn" onclick="claimGift(this, 'Gaming Chair')">
+                  <span>🎁 Tap to Claim Chair</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Gift 5: Spider-Man Mask -->
+            <div class="gift-card">
+              <div class="gift-img-wrap" onclick="openLightbox('images/gift_spiderman.jpg', 'Movie Replica Spider-Man Mask 🕷️')">
+                <span class="gift-badge">🕷️ Secret Identity</span>
+                <img class="gift-img" src="images/gift_spiderman.jpg" alt="Spider-Man Mask">
+                <span class="gift-zoom-hint">🔍 Tap to Zoom</span>
+              </div>
+              <div class="gift-card-body">
+                <div class="gift-title">Spider-Man Mask</div>
+                <div class="gift-price-row">
+                  <span class="gift-price-tag">Price: ₹0.00 💸</span>
+                  <span class="gift-shipping-tag">✓ Sent Online</span>
+                </div>
+                <div class="gift-desc">
+                  With great power comes great girlfriend! You'll always be my favorite superhero, Anshh. 🕷️❤️
+                </div>
+                <button class="gift-claim-btn" onclick="claimGift(this, 'Spider-Man Mask')">
+                  <span>🎁 Tap to Claim Mask</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Gift 6: Gaming Laptop -->
+            <div class="gift-card">
+              <div class="gift-img-wrap" onclick="openLightbox('images/gift_laptop.jpg', 'High-End RGB Gaming Laptop 💻')">
+                <span class="gift-badge">💻 240Hz RGB Beast</span>
+                <img class="gift-img" src="images/gift_laptop.jpg" alt="Gaming Laptop">
+                <span class="gift-zoom-hint">🔍 Tap to Zoom</span>
+              </div>
+              <div class="gift-card-body">
+                <div class="gift-title">Gaming Laptop</div>
+                <div class="gift-price-row">
+                  <span class="gift-price-tag">Price: ₹0.00 💸</span>
+                  <span class="gift-shipping-tag">✓ Sent Online</span>
+                </div>
+                <div class="gift-desc">
+                  RTX graphics, rainbow keyboard, insane speed, and officially 0 excuses to lag out on Discord! 😂💻
+                </div>
+                <button class="gift-claim-btn" onclick="claimGift(this, 'Gaming Laptop')">
+                  <span>🎁 Tap to Claim Laptop</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Gift 7: GT 650 -->
+            <div class="gift-card">
+              <div class="gift-img-wrap" onclick="openLightbox('images/gift_gt650.jpg', 'Royal Enfield Continental GT 650 🏍️')">
+                <span class="gift-badge">🏍️ The Ultimate Ride</span>
+                <img class="gift-img" src="images/gift_gt650.jpg" alt="Royal Enfield Continental GT 650">
+                <span class="gift-zoom-hint">🔍 Tap to Zoom</span>
+              </div>
+              <div class="gift-card-body">
+                <div class="gift-title">Royal Enfield GT 650</div>
+                <div class="gift-price-row">
+                  <span class="gift-price-tag">Price: ₹0.00 💸</span>
+                  <span class="gift-shipping-tag">✓ Sent Online</span>
+                </div>
+                <div class="gift-desc">
+                  Your dream twin-cylinder cafe racer! One day we're riding this together on long open highways. 🏍️💨✨
+                </div>
+                <button class="gift-claim-btn" onclick="claimGift(this, 'GT 650')">
+                  <span>🎁 Tap to Claim Motorcycle</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Gift 8: Porsche 911 -->
+            <div class="gift-card">
+              <div class="gift-img-wrap" onclick="openLightbox('images/gift_porsche911.jpg', 'Porsche 911 Carrera S 🏎️✨')">
+                <span class="gift-badge">🏎️ Pure German Engineering</span>
+                <img class="gift-img" src="images/gift_porsche911.jpg" alt="Porsche 911">
+                <span class="gift-zoom-hint">🔍 Tap to Zoom</span>
+              </div>
+              <div class="gift-card-body">
+                <div class="gift-title">Porsche 911</div>
+                <div class="gift-price-row">
+                  <span class="gift-price-tag">Price: ₹0.00 💸</span>
+                  <span class="gift-shipping-tag">✓ Sent Online</span>
+                </div>
+                <div class="gift-desc">
+                  That timeless silhouette and raw flat-six power. You driving, me passenger princess forever! 🏎️💨❤️
+                </div>
+                <button class="gift-claim-btn" onclick="claimGift(this, 'Porsche 911')">
+                  <span>🎁 Tap to Claim Porsche</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Gift 9: Black G-Wagon -->
+            <div class="gift-card">
+              <div class="gift-img-wrap" onclick="openLightbox('images/gift_gwagon.jpg', 'Matte Black Mercedes-AMG G-Wagon 🖤🔥')">
+                <span class="gift-badge">🖤 The Boss Machine</span>
+                <img class="gift-img" src="images/gift_gwagon.jpg" alt="Black G-Wagon">
+                <span class="gift-zoom-hint">🔍 Tap to Zoom</span>
+              </div>
+              <div class="gift-card-body">
+                <div class="gift-title">G-Wagon (Matte Black)</div>
+                <div class="gift-price-row">
+                  <span class="gift-price-tag">Price: ₹0.00 💸</span>
+                  <span class="gift-shipping-tag">✓ Sent Online</span>
+                </div>
+                <div class="gift-desc">
+                  V8 Bi-Turbo, all blacked out, and undeniable boss aura. Made specifically for you! 🖤🔥✨
+                </div>
+                <button class="gift-claim-btn" onclick="claimGift(this, 'Black G-Wagon')">
+                  <span>🎁 Tap to Claim G-Wagon</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Cute Romantic Note at End -->
+        <div class="jaldi-note-card" style="margin-top: 45px; padding: 28px 24px; background: linear-gradient(135deg, #fff5f8, #ffe5ec); border: 2.5px dashed #ff85a1; border-radius: 22px; text-align: center; box-shadow: 0 8px 25px rgba(255, 94, 126, 0.12);">
+          <div style="font-size: 32px; margin-bottom: 8px;">🥺👉👈💖</div>
+          <div style="font-family: 'Caveat', cursive; font-size: 42px; font-weight: 700; color: #e03158; line-height: 1.25;">
+            Note: Jaldi hi dungi... pakka! 🥺❤️✨
+          </div>
+          <p style="font-size: 16px; color: var(--pink-deep); margin-top: 8px; font-weight: 700;">
+            (Till then, enjoy your virtual supercar garage & gaming setup, Anshh! 🤭💸💕)
+          </p>
+        </div>
+
+        <!-- Bottom Action Buttons: Return and Next -->
+        <div style="text-align: center; margin-top: 35px; margin-bottom: 10px; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; align-items: center;">
+          <button class="btn-back" onclick="goBackFromPageFour()" style="box-shadow: 0 4px 15px rgba(255, 94, 126, 0.18); padding: 14px 28px; font-size: 15.5px;">
+            <span>← Return to Heart Collage 💖</span>
+          </button>
+          <button class="btn-pink-hero pulse-btn btn-next-page" onclick="openPageFive()" style="padding: 14px 36px; font-size: 16px; border-radius: 35px; box-shadow: 0 8px 25px rgba(255, 94, 126, 0.35);">
+            <span>Next 💕 →</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- =========================================================
+         PAGE 5: NEXT SURPRISE / CHAPTER
+         ========================================================= -->
+    <div id="page-five-view" style="display: none;">
+      <div class="back-btn-bar">
+        <button class="btn-back" onclick="goBackFromPageFive()">
+          ← Return to Gifts Wishlist
+        </button>
+      </div>
+
+      <div class="surprise-hero" style="text-align: center; padding: 50px 30px 45px 30px; background: rgba(255, 255, 255, 0.94); border-radius: 28px; border: 2.5px solid var(--border-pink); box-shadow: 0 15px 40px rgba(255, 94, 126, 0.16); margin-top: 15px;">
+        <div style="font-size: 45px; animation: bounce 1.8s infinite ease-in-out; margin-bottom: 12px;">🥰💖✨</div>
+        
+        <h1 class="surprise-title" style="color: #e03158; font-size: 54px; font-weight: 800; line-height: 1.25; margin: 0 auto 20px auto; max-width: 820px; text-shadow: 2px 2px 0px rgba(255, 182, 193, 0.45);">
+          I lovee youu soo muchh ❤️
+        </h1>
+
+        <p style="font-family: 'Caveat', cursive; font-size: 38px; font-weight: 700; color: #ff4d6d; margin: 0 auto 16px auto; max-width: 750px; line-height: 1.4;">
+          Thank you for always being with me . 🥺✨
+        </p>
+
+        <div style="margin: 10px auto 30px auto; display: inline-block; background: #fff0f5; border: 2px dashed #ff99aa; border-radius: 25px; padding: 8px 26px; box-shadow: 0 4px 15px rgba(255, 105, 180, 0.12);">
+          <span style="font-family: 'Caveat', cursive; font-size: 32px; font-weight: 700; color: #e03158;">
+            🐾 Love from Whiskey too! 🥺❤️
+          </span>
+        </div>
+
+        <!-- Cute Interactive Warm Hug Section with Clear Tap Indicator -->
+        <div style="text-align: center; margin-top: 35px; display: flex; flex-direction: column; align-items: center;">
+          <div class="tap-hint" style="font-size: 16px; font-weight: 700; color: #e03158; margin-bottom: 12px; animation: bounce 1.4s infinite ease-in-out; display: flex; align-items: center; gap: 8px;">
+            <span>👇</span> Tap this button for a warm surprise! <span>👇</span>
+          </div>
+
+          <button id="btn-warm-hug" class="btn-pink-hero pulse-btn" onclick="sendVirtualHug(this)" style="padding: 16px 40px; font-size: 17px; border-radius: 35px; box-shadow: 0 10px 30px rgba(255, 77, 109, 0.45); cursor: pointer;">
+            <span>👉 Press for Warm Hugs & Sweet Kisses! 🫂💋 ✨</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      Handcrafted with <span>💖</span> by Shreya for the sweetest boyfriend ever.
+    </footer>
+
+  </div>
+
+  <script>
+    // Bouquet data store with custom content, letters, and polaroids
+    const bouquetData = {
+      tulip: {
+        icon: '🌷',
+        title: 'Pastel Tulips for Anshh 🌷',
+        subtitle: 'Tulips symbolize perfect, enduring love—and finding my home in you.',
+        colors: ['#ff4d6d', '#ff758f', '#ff85a1', '#ffe5ec'],
+        letterTitle: 'To My Favorite Boy & Safe Heaven 🌷',
+        letter: `
+          <p>Dear Anshh,</p>
+          <p>I don’t think I say it enough, but you genuinely mean so much to me. 🌷❤️ You have become such a special part of my life, and somehow even the smallest things remind me of you. These tulips are just flowers, but I wanted each one to carry a little piece of what I feel for you.</p>
+          <p>The <strong style="color: #e63946;">red one 🌷❤️</strong> is for all the love I have for you, the <strong style="color: #ff5e7e;">pink one 🌷🩷</strong> for the softness and happiness you bring into my life, the <strong style="color: #d48b00;">yellow one 🌷💛</strong> for all the smiles and silly moments we share, the <strong style="color: #7b889b;">white one 🌷🤍</strong> for the peace I feel when I’m with you, and the <strong style="color: #8338ec;">purple one 🌷💜</strong> because I admire you more than I sometimes know how to express.</p>
+          <p>I know we aren’t perfect, and we may have our misunderstandings, bad days, and moments when things don’t go exactly the way we want. But despite all of that, you’re still someone I care about deeply. I don’t want only the easy moments with you—I want the moments where we learn, understand each other, grow together, and become better for each other.</p>
+          <p>Thank you for being a part of my life, for the memories we’ve made, for the laughs, the conversations, and even the little moments that might seem ordinary but mean a lot to me. 🥹❤️</p>
+          <p>I hope you remember that there’s someone who thinks you’re incredibly special and who is grateful that you’re in her life. 🌷 You’re not just someone I love—you’re someone I genuinely care about, appreciate, and want to keep making beautiful memories with. ❤️</p>
+        `,
+        polaroids: [
+          {
+            img: 'images/tulip1.jpg',
+            caption: 'With you, everywhere is home 💕'
+          },
+          {
+            img: 'images/tulip2.jpg',
+            caption: 'My favorite smile in the world 🌿'
+          },
+          {
+            img: 'images/tulip3.jpg',
+            caption: 'Forever my safe space 💖'
+          },
+          {
+            img: 'images/tulip4.jpg',
+            caption: 'You & me against the world 🌷'
+          }
+        ]
+      },
+      sunflower: {
+        icon: '🌻',
+        title: 'Golden Sunflowers for Anshh ☀️',
+        subtitle: 'Just like sunflowers always turn to the sun, you brighten every single second of my life.',
+        colors: ['#ff99c8', '#fec5bb', '#ffd166', '#ff758f'],
+        letterTitle: 'To the Sunshine of My Life 🌻',
+        letter: `
+          <p>Dear Anshh,</p>
+          <p>You’re like the sun in my life, and I don’t think I’ll ever be able to explain properly how much that means to me. ☀️ Just like the sun rises every morning and brings light to everything around it, you have this beautiful way of bringing light into my life without even trying. You brighten every single second of my life just by being you.</p>
+          <p>There are moments when my days feel heavy, when I overthink, when I feel tired or when everything around me feels a little too much, and somehow, your presence makes everything feel lighter. Sometimes it’s just one message from you, one conversation, one little thing you say, and suddenly my whole mood changes. That’s the kind of light you bring into my life. ✨</p>
+          <p>I love the way you have become such a beautiful part of my everyday life. You’re not just someone I talk to or someone I love—you’ve become someone whose presence feels like home to me. Just like I look forward to the warmth of the sun after a cold day, I find myself looking forward to you, your messages, your voice, your presence, and all the little moments we share. You have this way of making my world feel warmer, softer and happier.</p>
+          <p>You’re my personal sunshine, except the sun doesn’t randomly disappear, leave me on seen, irritate me for no reason, or make me overthink everything. 😭😂</p>
+          <p>Somehow, even after all your nonsense, I still end up smiling because of you. You have this weird superpower where you can make me laugh when I don’t feel like laughing and make my worst days feel a little better. I could complain about you for hours and still end up missing you five minutes later.</p>
+          <p>So yes, you’re my sunshine, my happiness, my comfort, and occasionally my biggest headache. 😂❤️ But honestly, even with all your teasing, your craziness, and all the little things you do that drive me crazy, I wouldn’t want anyone else by my side. 🌻💛</p>
+        `,
+        polaroids: [
+          {
+            img: 'images/sunflower1.jpg',
+            style: 'object-position: center 75%;',
+            caption: 'My favorite cozy moments with you ☀️'
+          },
+          {
+            img: 'images/sunflower2.jpg',
+            style: 'object-position: center 30%;',
+            caption: 'Always laughing at your silly jokes 😂'
+          },
+          {
+            img: 'images/sunflower3.jpg',
+            style: 'object-position: center 52%;',
+            caption: 'My whole heart, my personal sunshine 💛'
+          },
+          {
+            img: 'images/sunflower4.jpg',
+            style: 'object-position: center 60%;',
+            caption: 'The sweetest moments with you 🐾☀️'
+          }
+        ]
+      },
+      rose: {
+        icon: '🌹',
+        title: 'Velvet Red Roses for Anshh 🌹',
+        subtitle: 'Red roses symbolize passionate, unconditional love—my whole heart belongs to you.',
+        colors: ['#e63946', '#ff4d6d', '#d90429', '#ff758f', '#ffe5ec'],
+        letterTitle: 'To the Love of My Entire Life 🌹',
+        letter: `
+          <p>Dear Anshh,</p>
+          <p>And if I could tell you just one thing, it would be this: thank you for becoming such a beautiful part of my life. I don’t know what the future will look like, but I know that right now, my heart feels incredibly lucky to have you in it. 🌹❤️</p>
+          <p>I hope we keep choosing each other, keep talking through the difficult moments, keep laughing over the silly ones, and keep making memories that mean more to us than anyone else could understand.</p>
+          <p>I don’t just want to love you in the easy moments. I want to be there when you’re tired, when you’re stressed, when you’re chasing your dreams, when you’re proud of yourself, and even when you don’t feel like your best self. I want you to know that you never have to pretend with me. You can be completely yourself, and I’ll still see the person I care about so deeply.</p>
+          <p>You are more than just my boyfriend—you are someone who has left a beautiful mark on my heart. And no matter how many times I say “I love you,” I don’t think those three words will ever be enough to explain everything I feel for you. ✨</p>
+          <p>So, if you ever doubt how much you mean to me, come back to these words and remember this: <strong>you are loved, you are appreciated, you are deeply cherished, and you have a very special place in my heart. ❤️</strong></p>
+          <p>And if I had to choose all over again, knowing everything I know now, I’d still be grateful that somehow, out of all the people in this world, our paths found each other. I hope we never take that for granted. I hope we keep growing, keep caring, keep choosing each other, and keep turning ordinary days into memories worth holding onto.</p>
+          <p>I love you more deeply than I know how to explain, and I’ll always be grateful that you’re you. ❤️🌹</p>
+        `,
+        polaroids: [
+          {
+            img: 'images/rose1.jpg',
+            style: 'object-position: center 65%;',
+            caption: 'You have my whole heart ❤️'
+          },
+          {
+            img: 'images/rose2.jpg',
+            style: 'object-position: center 25%;',
+            caption: 'My favorite person, my forever 🌹'
+          },
+          {
+            img: 'images/rose3.jpg',
+            style: 'object-position: center 40%;',
+            caption: 'Every moment with you is magic ✨'
+          },
+          {
+            img: 'images/rose4.jpg',
+            style: 'object-position: center 50%;',
+            caption: 'Forever & always my boy 💕'
+          }
+        ]
+      }
+    };
+
+    let currentColors = ['#ff4d6d', '#ff758f', '#ff85a1', '#ffe5ec'];
+    let currentBouquetType = 'tulip';
+
+    // Function to open the chosen bouquet window
+    function openBouquet(type) {
+      currentBouquetType = type;
+      const data = bouquetData[type];
+      if (!data) return;
+
+      currentColors = data.colors;
+
+      // Update contents
+      document.getElementById('detail-icon').textContent = data.icon;
+      document.getElementById('detail-title').textContent = data.title;
+      document.getElementById('detail-subtitle').textContent = data.subtitle;
+      document.getElementById('letter-heading').textContent = data.letterTitle;
+      document.getElementById('letter-body').innerHTML = data.letter;
+
+      // Update polaroids
+      const polaroidContainer = document.getElementById('detail-polaroids');
+      polaroidContainer.innerHTML = '';
+      data.polaroids.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'polaroid';
+        div.onclick = triggerPetalBurst;
+        div.innerHTML = `
+          <img class="polaroid-img" src="${item.img}" style="${item.style || ''}" alt="Memory photo">
+          <div class="polaroid-caption">${item.caption}</div>
+        `;
+        polaroidContainer.appendChild(div);
+      });
+
+      // Show Next button ONLY on Roses, hide on Tulip and Sunflower
+      const nextBtn = document.getElementById('detail-next-btn');
+      if (nextBtn) {
+        if (type === 'rose') {
+          nextBtn.style.display = 'inline-flex';
+        } else {
+          nextBtn.style.display = 'none';
+        }
+      }
+
+      // Switch views smoothly
+      document.getElementById('selection-view').style.display = 'none';
+      const detailView = document.getElementById('detail-view');
+      detailView.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Trigger celebratory confetti in pink & rose theme colors
+      triggerPetalBurst();
+    }
+
+    // Function to go back to selection view
+    function goBackToSelection() {
+      document.getElementById('detail-view').style.display = 'none';
+      document.getElementById('selection-view').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Function to explore next flower: returns to main bouquet selection page
+    function exploreNextFlower() {
+      goBackToSelection();
+    }
+
+    // ====================================================
+    // 10 PHOTOS SPOTLIGHT SEQUENCE
+    // ====================================================
+    const spotlightPhotos = [
+      {
+        src: 'images/heart10.jpg',
+        style: 'object-position: center 28%;',
+        caption: 'My adventurous boy on his ride 🏍️✨',
+        badge: 'Photo 1 of 10 💕',
+        cardIndex: 0
+      },
+      {
+        src: 'images/heart6.jpg',
+        style: 'object-position: center 22%;',
+        caption: 'Look at how handsome you are! 🤵‍♂️💖',
+        badge: 'Photo 2 of 10 💕',
+        cardIndex: 1
+      },
+      {
+        src: 'images/heart3.jpg',
+        style: 'object-position: center 45%;',
+        caption: 'That warm, comforting smile 💫',
+        badge: 'Photo 3 of 10 💕',
+        cardIndex: 2
+      },
+      {
+        src: 'images/heart8.jpg',
+        style: 'object-position: center 36%;',
+        caption: 'The purest, sweetest boy with a puppy 🐾🥹',
+        badge: 'Photo 4 of 10 💕',
+        cardIndex: 3
+      },
+      {
+        src: 'images/heart5.jpg',
+        style: 'object-position: center 28%;',
+        caption: 'The boy who stole my entire heart 🌹',
+        badge: 'Photo 5 of 10 💕',
+        cardIndex: 4
+      },
+      {
+        src: 'images/heart4.jpg',
+        style: 'object-position: center 38%;',
+        caption: 'My favorite smile in the whole universe 🌊❤️',
+        badge: 'Photo 6 of 10 💕',
+        cardIndex: 5
+      },
+      {
+        src: 'images/heart7.jpg',
+        style: 'object-position: center 35%;',
+        caption: 'My rockstar, forever proud of you 🎸🎶',
+        badge: 'Photo 7 of 10 💕',
+        cardIndex: 6
+      },
+      {
+        src: 'images/heart1.jpg',
+        style: 'object-position: center 30%;',
+        caption: 'Effortlessly handsome 🖤',
+        badge: 'Photo 8 of 10 💕',
+        cardIndex: 7
+      },
+      {
+        src: 'images/heart9.jpg',
+        style: 'object-position: center 25%;',
+        caption: 'My favorite superhero 🕷️❤️',
+        badge: 'Photo 9 of 10 💕',
+        cardIndex: 8
+      },
+      {
+        src: 'images/heart2.jpg',
+        style: 'object-position: center 48%;',
+        caption: 'My sharp, charming boy ✨',
+        badge: 'Photo 10 of 10 💕',
+        cardIndex: 9
+      }
+    ];
+
+    let spotlightTimer = null;
+    let spotlightInitialDelayTimer = null;
+    let spotlightCurrentIndex = 0;
+
+
+
+    // Clean up highlights on collage cards
+    function clearCollageHighlights() {
+      const cards = document.querySelectorAll('.collage-photo-card');
+      cards.forEach(c => c.classList.remove('card-highlight'));
+    }
+
+    // Stop and dismiss spotlight sequence
+    function stopSpotlightSequence() {
+      if (spotlightTimer) {
+        clearTimeout(spotlightTimer);
+        spotlightTimer = null;
+      }
+      if (spotlightInitialDelayTimer) {
+        clearTimeout(spotlightInitialDelayTimer);
+        spotlightInitialDelayTimer = null;
+      }
+      clearCollageHighlights();
+      const modal = document.getElementById('spotlight-modal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    // Close spotlight and return back to heart immediately
+    function closeSpotlightNow() {
+      stopSpotlightSequence();
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 50,
+          spread: 70,
+          origin: { y: 0.55 },
+          colors: ['#ff4d6d', '#ff758f', '#ffe5ec']
+        });
+      }
+    }
+
+    // Start 2-second per photo slideshow
+    function startHeartSpotlightSequence() {
+      stopSpotlightSequence();
+      spotlightCurrentIndex = 0;
+      showNextSpotlightPhoto();
+    }
+
+    // Display individual photo for 2 seconds, then advance or return back to heart
+    function showNextSpotlightPhoto() {
+      if (spotlightCurrentIndex >= spotlightPhotos.length) {
+        // All 10 photos finished: return back to the full heart!
+        stopSpotlightSequence();
+        if (typeof confetti === 'function') {
+          confetti({
+            particleCount: 110,
+            spread: 90,
+            origin: { y: 0.5 },
+            colors: ['#ff4d6d', '#ff758f', '#ff85a1', '#ffd166', '#ff3366']
+          });
+        }
+        return;
+      }
+
+      const item = spotlightPhotos[spotlightCurrentIndex];
+      const modal = document.getElementById('spotlight-modal');
+      const img = document.getElementById('spotlight-img');
+      const caption = document.getElementById('spotlight-caption');
+      const badge = document.getElementById('spotlight-badge');
+      const progressFill = document.getElementById('spotlight-progress-fill');
+      const card = document.getElementById('spotlight-card');
+
+      if (!modal || !img || !caption || !badge || !progressFill) return;
+
+      // Highlight the corresponding card in the assembled heart collage
+      clearCollageHighlights();
+      const cards = document.querySelectorAll('.collage-photo-card');
+      if (cards[item.cardIndex]) {
+        cards[item.cardIndex].classList.add('card-highlight');
+      }
+
+      // Populate spotlight modal data
+      img.src = item.src;
+      img.style = item.style;
+      caption.textContent = item.caption;
+      badge.textContent = item.badge;
+
+      // Reset & animate 2-second progress bar
+      progressFill.style.transition = 'none';
+      progressFill.style.width = '0%';
+      void progressFill.offsetWidth; // trigger reflow
+      progressFill.style.transition = 'width 1.9s linear';
+      progressFill.style.width = '100%';
+
+      if (card) {
+        card.classList.remove('closing');
+      }
+      modal.style.display = 'flex';
+
+      // Advance after 2 seconds (2000ms)
+      spotlightTimer = setTimeout(() => {
+        spotlightCurrentIndex++;
+        showNextSpotlightPhoto();
+      }, 2000);
+    }
+
+    // Function to open the next surprise page
+    function openNextPage() {
+      document.getElementById('selection-view').style.display = 'none';
+      document.getElementById('detail-view').style.display = 'none';
+      const surpriseView = document.getElementById('surprise-view');
+      surpriseView.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // 1. First combine the heart from outside inwards
+      replayHeartAnimation();
+
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 110,
+          spread: 85,
+          origin: { y: 0.55 },
+          colors: ['#ff4d6d', '#ff758f', '#ff85a1', '#ffe5ec', '#ff3366', '#ffd166']
+        });
+      }
+
+      // 2. After the heart completes combining (~2.2s), display each photo for 2 seconds, then return back!
+      if (spotlightInitialDelayTimer) clearTimeout(spotlightInitialDelayTimer);
+      spotlightInitialDelayTimer = setTimeout(() => {
+        startHeartSpotlightSequence();
+      }, 2200);
+    }
+
+    // Function to return from surprise page back to flower selection
+    function goBackFromNextPage() {
+      stopSpotlightSequence();
+      document.getElementById('surprise-view').style.display = 'none';
+      const pageFour = document.getElementById('page-four-view');
+      if (pageFour) pageFour.style.display = 'none';
+      document.getElementById('selection-view').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Function to open Page 4 (Next Special Surprise)
+    function openPageFour() {
+      stopSpotlightSequence();
+      document.getElementById('surprise-view').style.display = 'none';
+      document.getElementById('selection-view').style.display = 'none';
+      document.getElementById('detail-view').style.display = 'none';
+      const pageFour = document.getElementById('page-four-view');
+      if (pageFour) {
+        pageFour.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 110,
+          spread: 85,
+          origin: { y: 0.5 },
+          colors: ['#ff4d6d', '#ff758f', '#ff85a1', '#ffe5ec', '#ffd166', '#ff3366']
+        });
+      }
+    }
+
+    // Function to return from Page 4 back to Heart Collage
+    function goBackFromPageFour() {
+      const pageFour = document.getElementById('page-four-view');
+      if (pageFour) pageFour.style.display = 'none';
+      const pageFive = document.getElementById('page-five-view');
+      if (pageFive) pageFive.style.display = 'none';
+      const surpriseView = document.getElementById('surprise-view');
+      if (surpriseView) surpriseView.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Function to open Page 5 (Next Special Surprise)
+    function openPageFive() {
+      document.getElementById('page-four-view').style.display = 'none';
+      document.getElementById('surprise-view').style.display = 'none';
+      document.getElementById('selection-view').style.display = 'none';
+      document.getElementById('detail-view').style.display = 'none';
+      const pageFive = document.getElementById('page-five-view');
+      if (pageFive) {
+        pageFive.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 110,
+          spread: 85,
+          origin: { y: 0.5 },
+          colors: ['#ff4d6d', '#ff758f', '#ff85a1', '#ffe5ec', '#ffd166', '#ff3366']
+        });
+      }
+    }
+
+    // Function to return from Page 5 back to Gifts Wishlist
+    function goBackFromPageFive() {
+      const pageFive = document.getElementById('page-five-view');
+      if (pageFive) pageFive.style.display = 'none';
+      const pageFour = document.getElementById('page-four-view');
+      if (pageFour) pageFour.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Function to claim a virtual gift
+    function claimGift(btn, giftName) {
+      if (btn.classList.contains('claimed')) return;
+      btn.classList.add('claimed');
+      btn.innerHTML = '<span>Claimed with Love! 🥰✨</span>';
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 80,
+          spread: 70,
+          origin: { y: 0.65 },
+          colors: ['#ff4d6d', '#ff758f', '#ffd166', '#2a9d8f', '#ffccd5']
+        });
+      }
+    }
+
+    // Replay the "out to in" heart photo animation
+    function replayHeartAnimation() {
+      const items = document.querySelectorAll('.collage-photo-card');
+      items.forEach(item => {
+        item.classList.remove('collage-animating');
+        void item.offsetWidth; // trigger reflow
+        item.classList.add('collage-animating');
+      });
+
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 80,
+          spread: 85,
+          origin: { y: 0.45 },
+          colors: ['#ff4d6d', '#ff758f', '#ff85a1', '#ffd166']
+        });
+      }
+    }
+
+    // Open Lightbox preview for square photos
+    function openLightbox(src, caption) {
+      const modal = document.getElementById('heart-lightbox');
+      const img = document.getElementById('lightbox-img');
+      const cap = document.getElementById('lightbox-caption');
+      if (modal && img && cap) {
+        img.src = src;
+        cap.textContent = caption;
+        modal.style.display = 'flex';
+      }
+    }
+
+    // Close Lightbox preview
+    function closeLightbox() {
+      const modal = document.getElementById('heart-lightbox');
+      if (modal) {
+        modal.style.display = 'none';
+      }
+    }
+
+    // Confetti effect matching current bouquet
+    function triggerPetalBurst() {
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 80,
+          spread: 75,
+          origin: { y: 0.6 },
+          colors: currentColors
+        });
+
+        setTimeout(() => {
+          confetti({
+            particleCount: 45,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0 },
+            colors: currentColors
+          });
+          confetti({
+            particleCount: 45,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1 },
+            colors: currentColors
+          });
+        }, 200);
+      }
+    }
+
+    // Virtual Hug and Kisses action
+    function sendVirtualHug(btn) {
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 120,
+          spread: 95,
+          origin: { y: 0.6 },
+          colors: ['#ff4d6d', '#ff758f', '#ff85a1', '#ffe5ec', '#ff3366', '#ffd166']
+        });
+        setTimeout(() => {
+          confetti({
+            particleCount: 60,
+            angle: 60,
+            spread: 70,
+            origin: { x: 0 },
+            colors: ['#ff4d6d', '#ff758f', '#ffccd5']
+          });
+          confetti({
+            particleCount: 60,
+            angle: 120,
+            spread: 70,
+            origin: { x: 1 },
+            colors: ['#ff4d6d', '#ff758f', '#ffccd5']
+          });
+        }, 220);
+      }
+
+      // Show floating cute toast
+      const toast = document.getElementById('hug-toast');
+      if (toast) {
+        toast.classList.add('show');
+        clearTimeout(window.hugToastTimer);
+        window.hugToastTimer = setTimeout(() => {
+          toast.classList.remove('show');
+        }, 3500);
+      }
+
+      // Update button text with sweet confirmation
+      if (btn && btn.querySelector) {
+        const span = btn.querySelector('span');
+        if (span) {
+          const originalText = span.textContent;
+          span.textContent = '🫂 Warm Hug & Kisses Sent! 🥰💋✨';
+          setTimeout(() => {
+            span.textContent = originalText;
+          }, 3200);
+        }
+      }
+    }
+
+    // ----------------------------------------------------
+    // PAGE 0: "DO YOU LOVE ME?" RUNAWAY LOGIC
+    // ----------------------------------------------------
+    let noAttempts = 0;
+    const noMessages = [
+      "No 🙄",
+      "Are you sure? 🤨",
+      "Wrong answer! 😤",
+      "Nice try! 🏃‍♂️💨",
+      "Can't catch me! 😜",
+      "Error: 'No' not found ❌",
+      "Too fast for you! 😂",
+      "Just click YES! 🥺💖",
+      "You love me, accept it! 💕"
+    ];
+
+    let noX = 25;
+    let noY = 25;
+    let noVx = 2.2;
+    let noVy = 1.7;
+    let isNoActive = true;
+
+    // Continuous smooth flying motion
+    function animateNoLoop() {
+      if (!isNoActive) return;
+      const noBtn = document.getElementById('btn-no');
+      const arena = document.getElementById('btn-arena');
+      const gateView = document.getElementById('gate-view');
+
+      if (noBtn && arena && gateView && gateView.style.display !== 'none') {
+        const arenaWidth = arena.clientWidth || 400;
+        const arenaHeight = arena.clientHeight || 220;
+        const btnWidth = noBtn.offsetWidth || 100;
+        const btnHeight = noBtn.offsetHeight || 44;
+
+        noX += noVx;
+        noY += noVy;
+
+        // Bounce off left / right walls
+        if (noX <= 12) {
+          noX = 12;
+          noVx = Math.abs(noVx);
+        } else if (noX + btnWidth >= arenaWidth - 12) {
+          noX = arenaWidth - btnWidth - 12;
+          noVx = -Math.abs(noVx);
+        }
+
+        // Bounce off top / bottom walls
+        if (noY <= 12) {
+          noY = 12;
+          noVy = Math.abs(noVy);
+        } else if (noY + btnHeight >= arenaHeight - 12) {
+          noY = arenaHeight - btnHeight - 12;
+          noVy = -Math.abs(noVy);
+        }
+
+        noBtn.style.left = noX + 'px';
+        noBtn.style.top = noY + 'px';
+      }
+
+      requestAnimationFrame(animateNoLoop);
+    }
+
+    // Start movement as soon as script runs
+    requestAnimationFrame(animateNoLoop);
+
+    // If hovered or tapped, dodge instantly and change text
+    function moveNoButton() {
+      const noBtn = document.getElementById('btn-no');
+      const arena = document.getElementById('btn-arena');
+      if (!noBtn || !arena) return;
+
+      noAttempts++;
+      noBtn.textContent = noMessages[noAttempts % noMessages.length];
+
+      const arenaWidth = arena.clientWidth || 400;
+      const arenaHeight = arena.clientHeight || 220;
+      const btnWidth = noBtn.offsetWidth || 100;
+      const btnHeight = noBtn.offsetHeight || 44;
+
+      // Teleport away and reverse direction with speed boost
+      noX = Math.random() > 0.5 ? 15 : (arenaWidth - btnWidth - 15);
+      noY = Math.floor(Math.random() * (arenaHeight - btnHeight - 24)) + 12;
+      noVx = (noVx > 0 ? -1 : 1) * (2.4 + Math.random());
+      noVy = (noVy > 0 ? -1 : 1) * (2.0 + Math.random());
+
+      noBtn.style.left = noX + 'px';
+      noBtn.style.top = noY + 'px';
+
+      // Grow YES button slightly with every attempt
+      const yesBtn = document.getElementById('btn-yes');
+      if (yesBtn) {
+        const currentScale = 1 + Math.min(noAttempts * 0.08, 0.45);
+        yesBtn.style.transform = `scale(${currentScale})`;
+      }
+    }
+
+    // Dodges automatically if mouse gets within 55px!
+    document.addEventListener('mousemove', (e) => {
+      const gateView = document.getElementById('gate-view');
+      const noBtn = document.getElementById('btn-no');
+      if (!gateView || !noBtn || gateView.style.display === 'none') return;
+
+      const rect = noBtn.getBoundingClientRect();
+      const btnCenterX = rect.left + rect.width / 2;
+      const btnCenterY = rect.top + rect.height / 2;
+      const dist = Math.hypot(e.clientX - btnCenterX, e.clientY - btnCenterY);
+
+      if (dist < 55) {
+        moveNoButton();
+      }
+    });
+
+    // Handle YES Click
+    function handleYesClick() {
+      isNoActive = false;
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 130,
+          spread: 100,
+          origin: { y: 0.5 },
+          colors: ['#ff4d6d', '#ff758f', '#ff85a1', '#ffe5ec', '#ff3366', '#ffd166']
+        });
+      }
+
+      const gateCard = document.querySelector('.gate-card');
+      if (gateCard) {
+        gateCard.innerHTML = `
+          <div style="font-size: 65px; animation: bounce 1s infinite ease-in-out;">🥰🎉💖</div>
+          <h1 class="gate-title" style="font-size: 50px; margin: 16px 0 10px 0;">YAY! I KNEW IT! ❤️</h1>
+          <p style="font-size: 19px; color: var(--pink-deep); font-weight: 700;">Opening your special surprises, my love... ✨</p>
+        `;
+      }
+
+      setTimeout(() => {
+        document.getElementById('gate-view').style.display = 'none';
+        document.getElementById('selection-view').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        setTimeout(() => {
+          if (typeof confetti === 'function') {
+            confetti({
+              particleCount: 60,
+              spread: 70,
+              origin: { y: 0.6 },
+              colors: ['#ff4d6d', '#ff758f', '#ff85a1', '#ffd166']
+            });
+          }
+        }, 350);
+      }, 1800);
+    }
+  </script>
+
+  <!-- Cute Toast Notification for Virtual Hug -->
+  <div id="hug-toast" class="hug-toast">
+    <span>🫂 Tightest warm hug & sweet kisses sent to Anshh! 💋✨</span>
+  </div>
+
+
+
+  <!-- 2-Second Spotlight Sequence Modal (Displays each photo for 2s then back to heart) -->
+  <div id="spotlight-modal" class="spotlight-modal" style="display: none;" onclick="closeSpotlightNow()">
+    <div class="spotlight-card" id="spotlight-card" onclick="event.stopPropagation()">
+      <button class="spotlight-skip" onclick="closeSpotlightNow()" title="Back to Heart Collage">✕</button>
+      <div class="spotlight-badge" id="spotlight-badge">Photo 1 of 10 💕</div>
+      <img id="spotlight-img" class="spotlight-img" src="" alt="Spotlight Photo">
+      <div id="spotlight-caption" class="spotlight-caption">Caption</div>
+      <div class="spotlight-progress-bar">
+        <div class="spotlight-progress-fill" id="spotlight-progress-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox Modal for Zooming In on Heart Photos -->
+  <div id="heart-lightbox" class="lightbox-modal" onclick="closeLightbox()">
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+      <img id="lightbox-img" src="" alt="Enlarged photo">
+      <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+  </div>
+</body>
+</html>
